@@ -1,17 +1,16 @@
 package sring.softuni.suls.models.enitites;
 
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Set;
 
 @Entity
-public class Module {
+public class Video {
 
     private Long id;
     private String name;
-    private Set<Course> courses = new HashSet<>();
+    private String link;
+    private Lecture lecture;
 
-    public Module() {
+    public Video() {
     }
 
     @Id
@@ -32,12 +31,20 @@ public class Module {
         this.name = name;
     }
 
-    @OneToMany(mappedBy = "module")
-    public Set<Course> getCourses() {
-        return this.courses;
+    public String getLink() {
+        return this.link;
     }
 
-    public void setCourses(Set<Course> courses) {
-        this.courses = courses;
+    public void setLink(String link) {
+        this.link = link;
+    }
+
+    @OneToOne(mappedBy = "video")
+    public Lecture getLecture() {
+        return this.lecture;
+    }
+
+    public void setLecture(Lecture lecture) {
+        this.lecture = lecture;
     }
 }

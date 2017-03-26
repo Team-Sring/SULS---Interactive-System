@@ -7,9 +7,8 @@ public class Lecture {
 
     private Long id;
     private String title;
-//    private Material material; //TODO
-    private Module module;
-
+    private Course course;
+    private Video video;
     public Lecture() {
     }
 
@@ -32,11 +31,20 @@ public class Lecture {
     }
 
     @ManyToOne
-    public Module getModule() {
-        return this.module;
+    public Course getCourse() {
+        return this.course;
     }
 
-    public void setModule(Module module) {
-        this.module = module;
+    public void setCourse(Course course) {
+        this.course = course;
+    }
+
+    @OneToOne
+    public Video getVideo() {
+        return this.video;
+    }
+
+    public void setVideo(Video video) {
+        this.video = video;
     }
 }

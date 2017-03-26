@@ -5,19 +5,20 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-public class Module {
+public class Authority {
 
     private Long id;
     private String name;
-    private Set<Course> courses = new HashSet<>();
+    private Set<User> users = new HashSet<>(0);
 
-    public Module() {
+    public Authority() {
+
     }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Long getId() {
-        return this.id;
+        return id;
     }
 
     public void setId(Long id) {
@@ -25,19 +26,19 @@ public class Module {
     }
 
     public String getName() {
-        return this.name;
+        return name;
     }
 
     public void setName(String name) {
         this.name = name;
     }
 
-    @OneToMany(mappedBy = "module")
-    public Set<Course> getCourses() {
-        return this.courses;
+    @ManyToMany(mappedBy = "authorities", cascade = CascadeType.ALL)
+    public Set<User> getUsers() {
+        return users;
     }
 
-    public void setCourses(Set<Course> courses) {
-        this.courses = courses;
+    public void setUsers(Set<User> users) {
+        this.users = users;
     }
 }
